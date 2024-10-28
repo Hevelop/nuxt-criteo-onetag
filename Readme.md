@@ -1,0 +1,238 @@
+# Criteo Tracking Plugin for Nuxt.js
+
+This plugin integrates Criteo's tracking events into a Nuxt.js application, allowing you to easily track user interactions such as page visits, product views, cart actions, and transactions.
+
+## Installation
+
+Install the plugin using npm:
+
+```bash
+npm install @hevelop/nuxt-criteo-onetag
+```
+
+## Usage
+
+1. Add the plugin to your `nuxt.config.js` file.
+
+   ```javascript
+   export default {
+     modules: [
+       // Add the Criteo plugin to your modules
+       'nuxt-criteo-tracking',
+     ],
+     criteoOnetag: {
+       enabled: true,
+       id: 'YOUR_CRITEO_ACCOUNT_ID', // Replace with your Criteo account ID
+     },
+   };
+   ```
+
+2. Use the `$criteo` functions to trigger various tracking events in your app.
+
+## Available Methods
+
+The plugin provides multiple methods for different tracking events:
+
+### `loadCriteoTag()`
+
+Loads the Criteo OneTag and triggers a loader event.
+
+**Example:**
+
+```javascript
+this.$criteo.loadCriteoTag();
+```
+
+### `visitTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType })`
+
+Tracks a generic page visit.
+
+**Parameters:**
+
+- `email` (optional): User's email.
+- `hashMethod` (optional): Hashing method for the email (e.g., `sha256`).
+- `customerId` (optional): Customer ID.
+- `visitorId` (optional): Retailer visitor ID.
+- `zipcode` (optional): User's zipcode.
+- `deviceType` (optional): Device type (`d`, `m`, or `t` for desktop, mobile, or tablet).
+
+**Example:**
+
+```javascript
+this.$criteo.visitTag({
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `homepageTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType })`
+
+Tracks a homepage visit.
+
+**Parameters:** Same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.homepageTag({
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `categoryTag({ category, customerId, visitorId, zipcode, deviceType, productIds })`
+
+Tracks a category or listing page view.
+
+**Parameters:**
+
+- `category`: The category name.
+- `productIds`: Array of product IDs viewed.
+- Other parameters are the same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.categoryTag({
+  category: 'Electronics',
+  productIds: ['prod123', 'prod456'],
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `productTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType, productId, price, availability })`
+
+Tracks a specific product view.
+
+**Parameters:**
+
+- `productId`: The product ID.
+- `price`: Product price.
+- `availability`: Availability status (`InStock`, `OutOfStock`).
+- Other parameters are the same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.productTag({
+  productId: 'prod123',
+  price: 99.99,
+  availability: 'InStock',
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `addToCartTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType, item })`
+
+Tracks adding an item to the cart.
+
+**Parameters:**
+
+- `item`: An object with the product details (e.g., `{ id: 'prod123', price: 99.99, quantity: 1 }`).
+- Other parameters are the same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.addToCartTag({
+  item: { id: 'prod123', price: 99.99, quantity: 1 },
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `basketTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType, cartItems })`
+
+Tracks a view of the cart.
+
+**Parameters:**
+
+- `cartItems`: An array of items in the cart, each containing `productId`, `quantity`, and `price`.
+- Other parameters are the same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.basketTag({
+  cartItems: [
+    { productId: 'prod123', quantity: 2, price: 49.99 },
+    { productId: 'prod456', quantity: 1, price: 149.99 },
+  ],
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+### `salesTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType, orderId, cartItems, transactionValue })`
+
+Tracks a completed transaction.
+
+**Parameters:**
+
+- `orderId`: The order ID.
+- `cartItems`: An array of items purchased.
+- `transactionValue`: Total value of the transaction.
+- Other parameters are the same as `visitTag`.
+
+**Example:**
+
+```javascript
+this.$criteo.salesTag({
+  orderId: 'order123',
+  cartItems: [
+    { productId: 'prod123', quantity: 2, price: 49.99 },
+    { productId: 'prod456', quantity: 1, price: 149.99 },
+  ],
+  transactionValue: 249.97,
+  email: 'user@example.com',
+  hashMethod: 'sha256',
+  customerId: '12345',
+  visitorId: 'visitor123',
+  zipcode: '12345',
+  deviceType: 'd',
+});
+```
+
+## Configuration
+
+The plugin requires a Criteo account ID, which should be set in `nuxt.config.js`:
+
+```javascript
+export default {
+  criteo: {
+    id: 'YOUR_CRITEO_ACCOUNT_ID', // Replace with your Criteo account ID
+  },
+};
+```
+
+## License
+
+MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please submit issues and pull requests for any improvements.

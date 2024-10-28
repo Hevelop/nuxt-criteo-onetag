@@ -1,0 +1,65 @@
+{
+  "name": "@hevelop/nuxt-criteo-onetag",
+  "version": "1.0.5",
+  "description": "A Nuxt.js module to integrate Criteo OneTag for tracking various events",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hevelop/nuxt-criteo-onetag.git"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxtjs",
+    "criteo",
+    "onetag",
+    "tracking",
+    "ecommerce",
+    "module"
+  ],
+  "author": "Simone Marcato <simone@hevelop.com>",
+  "license": "MIT",
+  "dependencies": {
+    "path": "^0.12.7"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.11"
+  },
+  "engines": {
+    "node": "^16.13"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:fix": "eslint --ext .js,.vue --ignore-path .gitignore --fix ."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@nuxt/types": "latest",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/html-validator": "^0.6.0",
+    "@types/lodash-es": "^4.17.6",
+    "@typescript-eslint/parser": "^5.39.0",
+    "@vue-storefront/eslint-config": "^2.0.0-rc.5",
+    "@vue/runtime-dom": "^3.2.37",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
+    "dotenv": "^12.0.1",
+    "ejs": "^3.1.6",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lint-staged": "13.0.3",
+    "prettier": "^2.7.1",
+    "sass": "^1.57.0",
+    "sass-loader": "10.1.1",
+    "ts-loader": "^8.1.0",
+    "ts-node": "^10.8.2",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-svg-loader": "^0.16.0",
+    "vue-template-compiler": "2.6.14",
+    "webpack": "4.46.0"
+  }
+}

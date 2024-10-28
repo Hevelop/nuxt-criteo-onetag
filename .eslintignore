@@ -1,0 +1,7 @@
+**/node_modules/**/*
+**/lib/*
+/tests
+/_theme
+package.json
+/static/scalapay/customScalapayPopupScript.js
+/static/removeWorkboxPrecaching.js
