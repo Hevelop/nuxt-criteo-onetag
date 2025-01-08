@@ -22,7 +22,6 @@ npm install @hevelop/nuxt-criteo-onetag
      ],
      criteoOnetag: {
        enabled: true,
-       id: 'YOUR_CRITEO_ACCOUNT_ID', // Replace with your Criteo account ID
      },
    };
    ```
@@ -48,7 +47,7 @@ this.$criteo.loadCriteoTag();
 Tracks a generic page visit.
 
 **Parameters:**
-
+- `id`: Your Criteo account ID.
 - `email` (optional): User's email.
 - `hashMethod` (optional): Hashing method for the email (e.g., `sha256`).
 - `customerId` (optional): Customer ID.
@@ -60,6 +59,7 @@ Tracks a generic page visit.
 
 ```javascript
 this.$criteo.visitTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID',
   email: 'user@example.com',
   hashMethod: 'sha256',
   customerId: '12345',
@@ -79,6 +79,7 @@ Tracks a homepage visit.
 
 ```javascript
 this.$criteo.homepageTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID',
   email: 'user@example.com',
   hashMethod: 'sha256',
   customerId: '12345',
@@ -102,6 +103,7 @@ Tracks a category or listing page view.
 
 ```javascript
 this.$criteo.categoryTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID', 
   category: 'Electronics',
   productIds: ['prod123', 'prod456'],
   customerId: '12345',
@@ -126,6 +128,7 @@ Tracks a specific product view.
 
 ```javascript
 this.$criteo.productTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID', 
   productId: 'prod123',
   price: 99.99,
   availability: 'InStock',
@@ -151,6 +154,7 @@ Tracks adding an item to the cart.
 
 ```javascript
 this.$criteo.addToCartTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID', 
   item: { id: 'prod123', price: 99.99, quantity: 1 },
   email: 'user@example.com',
   hashMethod: 'sha256',
@@ -174,6 +178,7 @@ Tracks a view of the cart.
 
 ```javascript
 this.$criteo.basketTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID', 
   cartItems: [
     { productId: 'prod123', quantity: 2, price: 49.99 },
     { productId: 'prod456', quantity: 1, price: 149.99 },
@@ -202,6 +207,7 @@ Tracks a completed transaction.
 
 ```javascript
 this.$criteo.salesTag({
+  id: 'YOUR_CRITEO_ACCOUNT_ID', 
   orderId: 'order123',
   cartItems: [
     { productId: 'prod123', quantity: 2, price: 49.99 },
@@ -219,15 +225,7 @@ this.$criteo.salesTag({
 
 ## Configuration
 
-The plugin requires a Criteo account ID, which should be set in `nuxt.config.js`:
-
-```javascript
-export default {
-  criteo: {
-    id: 'YOUR_CRITEO_ACCOUNT_ID', // Replace with your Criteo account ID
-  },
-};
-```
+All methods require the `id` parameter, which is your Criteo account ID.
 
 ## License
 
