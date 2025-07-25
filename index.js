@@ -15,6 +15,7 @@ export default function CriteoOnetagModule(moduleOptions) {
   this.addPlugin({
     src: resolve(__dirname, "plugin.js"),
     fileName: "criteo-onetag.js",
+    mode: 'client',
     options,
   });
 }
