@@ -2,6 +2,11 @@
 
 This plugin integrates Criteo's tracking events into a Nuxt.js application, allowing you to easily track user interactions such as page visits, product views, cart actions, and transactions.
 
+⚠️ Important: This plugin automatically loads the Criteo script the first time you call any tag method (e.g., homepageTag, visitTag, etc.).
+You do not need to manually call loadCriteoTag() unless you want to preload the script before using any tracking calls.
+
+#### If you use Consent Management Platforms (like Cookiebot or Google Consent Mode), make sure to load Criteo or call any method only after user consent is granted.
+
 ## Installation
 
 Install the plugin using npm:
@@ -36,10 +41,12 @@ The plugin provides multiple methods for different tracking events:
 
 Loads the Criteo OneTag and triggers a loader event.
 
+All tag methods (like homepageTag, visitTag, etc.) automatically load the script if it hasn’t been loaded yet.
+
 **Example:**
 
 ```javascript
-this.$criteo.loadCriteoTag();
+this.$criteo.loadCriteoTag({ id: 'YOUR_CRITEO_ACCOUNT_ID' });
 ```
 
 ### `visitTag({ email, hashMethod, customerId, visitorId, zipcode, deviceType })`
